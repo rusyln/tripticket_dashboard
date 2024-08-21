@@ -1,10 +1,15 @@
-<?phpnamespace Drupal\tripticket_dashboard\Controller;
+<?php
+
+namespace Drupal\tripticket_dashboard\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\BareHtmlPageRenderer;
 use Drupal\Core\Html\HtmlResponseAttachmentsProcessorInterface;
 
+/**
+ * Returns responses for Tripticket Dashboard routes.
+ */
 class TripticketDashboardController extends ControllerBase {
 
   /**
@@ -16,26 +21,24 @@ class TripticketDashboardController extends ControllerBase {
       return new RedirectResponse('/');
     }
 
-    // Retrieve the number of nodes with a 'pending' status.
-    $num_pending_tickets = \Drupal::entityQuery('node')
-      ->condition('type', 'trip_ticket')  // Ensure it's the trip_ticket content type.
-      ->condition('field_status', 'pending')  // Filter by 'pending' status.
-      ->count()
-      ->accessCheck(FALSE)
-      ->execute();
 
-    // Build the content for the page.
-    $content = [
-      '#theme' => 'tripticket_dashboard',
-      '#variables' => [  // Use 'variables' to pass the data to the Twig template.
-        'num_pending_tickets' => $num_pending_tickets,
+    
+
+
+
+    
+   // Build the content for the page.
+   $content = [
+    '#theme' => 'tripticket_dashboard',
+    '#variables' => [  // Use 'variables' to pass the data to the Twig template.
+      'num_pending_tickets' => $num_pending_tickets,
+    ],
+    '#attached' => [
+      'library' => [
+        'tripticket_dashboard/tripticket_dashboard',  // Attach your custom library here.
       ],
-      '#attached' => [
-        'library' => [
-          'tripticket_dashboard/tripticket_dashboard',  // Attach your custom library here.
-        ],
-      ],
-    ];
+    ],
+  ];
 
     // Use Drupal services to render the page.
     $bareHtmlPageRenderer = new BareHtmlPageRenderer(\Drupal::service('renderer'), \Drupal::service('html_response.attachments_processor'));
@@ -65,4 +68,6 @@ class TripticketDashboardController extends ControllerBase {
 
     return $response;
   }
+
 }
+
