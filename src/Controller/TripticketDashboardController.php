@@ -47,9 +47,11 @@ class TripticketDashboardController extends ControllerBase {
     
     // Get the attached assets (libraries, styles, scripts, etc.).
     $assets = $response->getAttachedAssets();
-
-    // Debug and print all the head tags.
-    dpm($assets->getHead());
+    
+    // Log the head tags.
+    foreach ($assets->getHead() as $head_tag) {
+      \Drupal::logger('tripticket_dashboard')->info('Head Tag: <pre>@tag</pre>', ['@tag' => htmlspecialchars($head_tag)]);
+    }
 
     return $response;
   }
