@@ -25,6 +25,7 @@ class TripticketDashboardController extends ControllerBase {
     $num_pending_tickets = \Drupal::entityQuery('node')
       ->condition('type', 'trip_ticket')  // Ensure it's the trip_ticket content type.
       ->condition('field_status', 'Pending')  // Filter by 'pending' status.
+      ->accessCheck(FALSE)
       ->count()
       ->execute();
   
