@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\BareHtmlPageRenderer;
 use Drupal\Core\Html\HtmlResponseAttachmentsProcessorInterface;
+use Drupal\Core\Asset\AttachedAssets;
 
 /**
  * Returns responses for Tripticket Dashboard routes.
@@ -25,6 +26,11 @@ class TripticketDashboardController extends ControllerBase {
     $content = [
       '#theme' => 'tripticket_dashboard',
       '#content' => $content,
+      '#attached' => [
+        'library' => [
+          'tripticket_dashboard/custom_library',  // Attach your custom library here.
+        ],
+      ],
     ];
 
     // Use Drupal services to render the page.
@@ -39,6 +45,12 @@ class TripticketDashboardController extends ControllerBase {
       $attachmentsProcessor->processAttachments($response);
     }
     
+    // Get the attached assets (libraries, styles, scripts, etc.).
+    $assets = $response->getAttachedAssets();
+
+    // Debug and print all the head tags.
+    dpm($assets->getHead());
+
     return $response;
   }
 
