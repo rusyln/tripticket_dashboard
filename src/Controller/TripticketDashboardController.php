@@ -24,6 +24,16 @@ class TripticketDashboardController extends ControllerBase {
 
     
 
+    // Retrieve the number of nodes with a 'pending' status.
+    $num_pending_tickets = \Drupal::entityQuery('node')
+      ->condition('type', 'trip_ticket')  // Ensure it's the trip_ticket content type.
+      ->condition('field_status', 'Pending')  // Filter by 'pending' status.
+      ->count()
+      ->accessCheck(FALSE)
+      ->execute();
+
+    // Set default value to 0 if the result is empty.
+    $num_pending_tickets = $num_pending_tickets ?: 0;
 
 
     
