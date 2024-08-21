@@ -1,15 +1,14 @@
 <?php
-
 /**
  * Implements hook_theme().
  */
 function tripticket_dashboard_theme($existing, $type, $theme, $path) {
-  return [
-    'tripticket_dashboard' => [
-      'template' => 'tripticket-dashboard',
-      'path' => $path . '/templates',
-      'render element' => 'content', // Ensure the 'render element' key is included.
-    ],
-  ];
-}
-
+    return [
+      'tripticket_dashboard' => [
+        'template' => 'tripticket-dashboard',
+        'path' => $path . '/templates',
+        'render element' => 'variables',  // Changed 'content' to 'variables' to match the standard usage.
+      ],
+    ];
+  }
+  

@@ -1,5 +1,4 @@
 <?php
-
 namespace Drupal\tripticket_dashboard\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -7,9 +6,6 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\BareHtmlPageRenderer;
 use Drupal\Core\Html\HtmlResponseAttachmentsProcessorInterface;
 
-/**
- * Returns responses for Tripticket Dashboard routes.
- */
 class TripticketDashboardController extends ControllerBase {
 
   /**
@@ -21,9 +17,18 @@ class TripticketDashboardController extends ControllerBase {
       return new RedirectResponse('/');
     }
 
+    // Retrieve the number of nodes with a 'pending' status.
+    $num_pending_tickets = \Drupal::entityQuery('node')
+      ->condition('type', 'trip_ticket')  // Ensure it's the trip_ticket content type.
+      ->condition('field_status', 'pending')  // Filter by 'pending' status.
+      ->count()
+      ->accessCheck(FALSE)
+      ->execute();
+
     // Build the content for the page.
     $content = [
       '#theme' => 'tripticket_dashboard',
+      '#num_pending_tickets' => $num_pending_tickets,
       '#attached' => [
         'library' => [
           'tripticket_dashboard/tripticket_dashboard',  // Attach your custom library here.
