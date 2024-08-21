@@ -4,7 +4,7 @@ namespace Drupal\tripticket_dashboard\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Drupal\Core\Controller\ControllerBase;
-
+use Drupal\Core\Render\BareHtmlPageRenderer;
 /**
  * Returns responses for Tripticket Dashboard routes.
  */
@@ -26,10 +26,13 @@ class TripticketDashboardController extends ControllerBase {
         '#content' => $content,
       ),
     );
-    $html = \Drupal::service('renderer')->renderRoot($build);
-    $response = new Response();
-    $response->setContent($html);
-  
+
+    $attachments = \Drupal::service('html_response.attachments_processor');
+    $renderer = \Drupal::service('renderer');
+    
+    $bareHtmlPageRenderer = new BareHtmlPageRenderer($renderer, $attachments);
+    
+    $response = $bareHtmlPageRenderer->renderBarePage($build, 'Page Title', 'markup');
     return $response;
   }
 
