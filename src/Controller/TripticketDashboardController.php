@@ -34,6 +34,7 @@ class TripticketDashboardController extends ControllerBase {
 
     // Set default value to 0 if the result is empty.
     $num_pending_tickets = $num_pending_tickets ?: 0;
+    dpm($num_pending_tickets);
 
 
     
