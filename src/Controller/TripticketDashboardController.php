@@ -24,7 +24,7 @@ class TripticketDashboardController extends ControllerBase {
     // Build the content for the page.
     $content = [
       '#theme' => 'tripticket_dashboard',
-      '#content' => $content,
+      
       '#attached' => [
         'library' => [
           'tripticket_dashboard/tripticket_dashboard',  // Attach your custom library here.
