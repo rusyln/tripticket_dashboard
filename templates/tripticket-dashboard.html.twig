@@ -71,27 +71,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="card mb-4">
-			<div class="card-header">
-				<i class="fas fa-table me-1"></i>
-				Actions
-			</div>
-			<div class="card-body">
-				<button class="btn btn-primary btn-add-services">
-					<i class="fas fa-plus-circle me-2"></i>
-					Add Services
-				</button>
-				<button class="btn btn-secondary btn-import-services">
-					<i class="fas fa-file-import me-2"></i>
-					Import Services
-				</button>
-			</div>
-		</div>
+		
 		<div class="card mb-4">
 			<div class="card-header bg-primary">
 				<p class="text-start text-white">
 					<i class="fas fa-table me-1 text-white"></i>
-					All Services
+					Trip Ticket
 				</p>
 			</div>
 			<div class="card-body">
@@ -132,7 +117,7 @@
 									<div
 										class="tab-pane fade show active" id="innerTab1">
 										<!-- Content for Inner Tab 1A -->
-										{{ drupal_view('pending_credits', 'block_2') }}
+										{{ drupal_view('list_of_tripticket', 'block_1') }}
 									</div>
 									<div class="tab-pane fade" id="innerTab2">
 										{{ drupal_view('pending_credits', 'block_3') }}
