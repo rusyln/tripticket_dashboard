@@ -36,7 +36,7 @@ class TripticketDashboardController extends ControllerBase {
     $bareHtmlPageRenderer = new BareHtmlPageRenderer(\Drupal::service('renderer'), \Drupal::service('html_response.attachments_processor'));
 
     // Render the bare HTML page.
-    $response = $bareHtmlPageRenderer->renderBarePage($content, 'Page Title', 'markup');
+   
 
     // Attach head tags using HtmlResponseAttachmentsProcessorInterface.
     $attachmentsProcessor = \Drupal::service('html_response.attachments_processor');
