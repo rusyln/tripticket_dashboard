@@ -1,24 +1,15 @@
 <?php
 
 /**
- * @file
- * Primary module hooks for Tripticket Dashboard module.
+ * Implements hook_theme().
  */
-
-function tripticket_dashboard_theme($existing,$type,$theme,$path){
-
-
-    $module_handler = \Drupal::service('extension.list.module');
-    $module_path = $module_handler->getPath('tripticket_dashboard');
-
-    return[
-            'tripticket_dashboard' => [
-                            'template' => 'tripticket-dashboard',
-                            'path' => $module_path . '/templates',
-
-            ],
-
-
-    ];
-
+function tripticket_dashboard_theme($existing, $type, $theme, $path) {
+  return [
+    'tripticket_dashboard' => [
+      'template' => 'tripticket-dashboard',
+      'path' => $path . '/templates',
+      'render element' => 'content', // Ensure the 'render element' key is included.
+    ],
+  ];
 }
+
