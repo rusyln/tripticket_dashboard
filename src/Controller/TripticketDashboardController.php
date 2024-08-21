@@ -14,10 +14,14 @@ class TripticketDashboardController extends ControllerBase {
    */
   public function build() {
 
-    $build['content'] = [
-      '#type' => 'item',
-      '#markup' => $this->t('It works!'),
-    ];
+
+    if (!$this -> currentUser()->hasPermission('administer tripticket_dashboard configuration')){
+      return new RedirectResponse('/');
+    }
+
+    $build = [];
+    $build['#theme'] = 'tripticket_dashboard';
+
 
     return $build;
   }
