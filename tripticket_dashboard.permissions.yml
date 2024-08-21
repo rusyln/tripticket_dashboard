@@ -1,0 +1,4 @@
+administer tripticket_dashboard configuration:
+  title: 'Administer tripticket_dashboard configuration'
+  description: 'Optional description.'
+  restrict access: true

@@ -1,0 +1,8 @@
+name: Tripticket Dashboard
+type: module
+description: This will be the dashboard of the trip ticket for GSD
+package: Trip Ticket
+core_version_requirement: ^9 || ^10
+dependencies:
+  - node
+  - views

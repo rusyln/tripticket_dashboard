@@ -1,0 +1,8 @@
+tripticket_dashboard.example:
+  path: '/tripticket-dashboard/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\tripticket_dashboard\Controller\TripticketDashboardController::build'
+  requirements:
+    _permission: 'access content'
+
