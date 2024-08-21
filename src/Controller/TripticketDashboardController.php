@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\BareHtmlPageRenderer;
 use Drupal\Core\Html\HtmlResponseAttachmentsProcessorInterface;
-use Drupal\Core\Asset\AttachedAssets;
 
 /**
  * Returns responses for Tripticket Dashboard routes.
@@ -18,7 +17,7 @@ class TripticketDashboardController extends ControllerBase {
    */
   public function build() {
     // Check if the user has the necessary permission.
-    if (!$this->currentUser()->hasPermission('administer tripticket_dashboard configuration')){
+    if (!$this->currentUser()->hasPermission('administer tripticket_dashboard configuration')) {
       return new RedirectResponse('/');
     }
 
@@ -35,10 +34,10 @@ class TripticketDashboardController extends ControllerBase {
 
     // Use Drupal services to render the page.
     $bareHtmlPageRenderer = new BareHtmlPageRenderer(\Drupal::service('renderer'), \Drupal::service('html_response.attachments_processor'));
-    
+
     // Render the bare HTML page.
     $response = $bareHtmlPageRenderer->renderBarePage($content, 'Page Title', 'markup');
-    
+
     // Attach head tags using HtmlResponseAttachmentsProcessorInterface.
     $attachmentsProcessor = \Drupal::service('html_response.attachments_processor');
     if ($attachmentsProcessor instanceof HtmlResponseAttachmentsProcessorInterface) {
@@ -47,6 +46,14 @@ class TripticketDashboardController extends ControllerBase {
 
     // Retrieve the attachments directly from the response.
     $attachments = $response->getAttachments();
+
+    // Filter out theme libraries.
+    if (isset($attachments['library'])) {
+      $attachments['library'] = array_filter($attachments['library'], function ($library) {
+        // Keep only the libraries from your module.
+        return strpos($library, 'tripticket_dashboard/') === 0;
+      });
+    }
 
     // Log all head tags.
     if (isset($attachments['html_head'])) {
