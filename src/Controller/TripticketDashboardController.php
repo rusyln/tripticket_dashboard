@@ -1,7 +1,7 @@
 <?php
 
 namespace Drupal\tripticket_dashboard\Controller;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Controller\ControllerBase;
 
 /**
