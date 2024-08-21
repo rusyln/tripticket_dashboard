@@ -19,11 +19,17 @@ class TripticketDashboardController extends ControllerBase {
       return new RedirectResponse('/');
     }
 
-    $build = [];
-    $build['#theme'] = 'tripticket_dashboard';
-
-
-    return $build;
+    $build = array(
+      'page' => array(
+        '#theme' => 'tripticket_dashboard',
+        '#content' => $content,
+      ),
+    );
+    $html = \Drupal::service('renderer')->renderRoot($build);
+    $response = new Response();
+    $response->setContent($html);
+  
+    return $response;
   }
 
 }
