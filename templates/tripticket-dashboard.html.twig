@@ -1,0 +1,415 @@
+
+<!-- File: modules/custom/alien_dashboard/templates/alien-dashboard.html.twig -->
+
+<main>
+
+<div class="container-fluid px-4">
+
+<h1 class="mt-4">Dashboard</h1>
+
+<ol class="breadcrumb mb-4">
+
+<li class="breadcrumb-item active">Dashboard</li>
+
+</ol>
+
+<div class="row">
+
+<div class="col-xl-3 col-md-6">
+
+<div class="card bg-primary text-white mb-4">
+
+<div class="card-body">
+
+<div class="d-flex flex-column align-items-center">
+
+<span class="h5 mb-2">Active Users</span>
+
+<span class="display-4">{{ num_users }}</span>
+
+</div>
+
+</div>
+
+<div class="card-footer d-flex align-items-center justify-content-between">
+
+<a class="small text-white stretched-link" href="#">View All Users</a>
+
+<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-xl-3 col-md-6">
+
+<div class="card bg-warning text-white mb-4">
+
+<div class="card-body">
+
+<div class="d-flex flex-column align-items-center">
+
+<span class="h5 mb-2">Total of Checks</span>
+
+<span class="display-4">{{ num_users }}</span>
+
+</div>
+
+</div>
+
+<div class="card-footer d-flex align-items-center justify-content-between">
+
+<a class="small text-white stretched-link" href="#">View All Checks</a>
+
+<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-xl-3 col-md-6">
+
+<div class="card bg-success text-white mb-4">
+
+<div class="card-body">
+
+<div class="d-flex flex-column align-items-center">
+
+<span class="h5 mb-2">Total of Unlocks</span>
+
+<span class="display-4">{{ num_users }}</span>
+
+</div>
+
+</div>
+
+<div class="card-footer d-flex align-items-center justify-content-between">
+
+<a class="small text-white stretched-link" href="#">View All Unlocks</a>
+
+<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-xl-3 col-md-6">
+
+<div class="card bg-danger text-white mb-4">
+
+<div class="card-body">
+
+<div class="d-flex flex-column align-items-center">
+
+<span class="h5 mb-2">Waiting</span>
+
+<span class="display-4">{{ num_users }}</span>
+
+</div>
+
+</div>
+
+<div class="card-footer d-flex align-items-center justify-content-between">
+
+<a class="small text-white stretched-link" href="#">View All Unlocks</a>
+
+<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card mb-4">
+
+<div class="card-header">
+
+<i class="fas fa-table me-1"></i>
+
+Actions
+
+</div>
+
+<div class="card-body">
+
+<button class="btn btn-primary btn-add-services">
+
+<i class="fas fa-plus-circle me-2"></i>
+
+Add Services
+
+</button>
+
+<button class="btn btn-secondary btn-import-services">
+
+<i class="fas fa-file-import me-2"></i>
+
+Import Services
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card mb-4">
+
+<div class="card-header bg-primary">
+
+<p class="text-start text-white">
+
+<i class="fas fa-table me-1 text-white"></i>
+
+All Services
+
+</p>
+
+</div>
+
+<div class="card-body">
+
+<div class="card mb-4">
+
+<div class="card-header ">
+
+<ul class="nav nav-tabs card-header-tabs">
+
+<li class="nav-item">
+
+<a class="nav-link active" data-bs-toggle="tab" href="#tab1">CREDITS</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link " data-bs-toggle="tab" href="#tab2">GIFT CARDS</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" data-bs-toggle="tab" href="#tab3">IMEI CHECKS</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" data-bs-toggle="tab" href="#tab4">SOFTWARE TOOLS</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" data-bs-toggle="tab" href="#tab5">UNLOCK</a>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="card-body">
+
+<div class="tab-content">
+
+<div class="tab-pane fade show active" id="tab1">
+
+<!-- Inner tabs inside Tab 1 -->
+
+<ul class="nav nav-tabs">
+
+<li class="nav-item">
+
+<a class="nav-link active" data-bs-toggle="tab" href="#innerTab1">PENDING</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" data-bs-toggle="tab" href="#innerTab2">COMPLETED</a>
+
+</li>
+
+</ul>
+
+<div class="tab-content mt-3">
+
+<div class="tab-pane fade show active" id="innerTab1">
+
+<!-- Content for Inner Tab 1A -->
+
+{{ drupal_view('pending_credits',  'block_2') }}
+
+</div>
+
+<div class="tab-pane fade" id="innerTab2">
+
+{{ drupal_view('pending_credits',  'block_3') }}
+
+</div>
+
+</div>
+
+</div>
+
+<div class="tab-pane fade" id="tab2">
+
+<div class="tab-pane fade show active" id="tab1">
+
+<!-- Inner tabs inside Tab 1 -->
+
+<ul class="nav nav-tabs">
+
+<li class="nav-item">
+
+<a class="nav-link active" data-bs-toggle="tab" href="#innerTab1Processing">PROCESSING</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" data-bs-toggle="tab" href="#innerTab2Processing">DELIVERED</a>
+
+</li>
+
+</ul>
+
+<div class="tab-content mt-3">
+
+<div class="tab-pane fade show active" id="innerTab1Processing">
+
+<!-- Content for Inner Tab 1A -->
+
+{{ drupal_view('user_orders',  'block_3') }}
+
+</div>
+
+<div class="tab-pane fade" id="innerTab2Processing">
+
+{{ drupal_view('user_orders',  'block_4') }}
+
+</div>
+
+</div>
+
+</div><!--GIFT CARD -->
+
+</div>
+
+<div class="tab-pane fade" id="tab3">
+
+{{ drupal_view('imei_checks_orders',  'block_1') }}
+
+</div>
+
+<div class="tab-pane fade" id="tab4">
+
+  
+  
+
+<div class="tab-pane fade show active" id="tab1">
+
+<!-- Inner tabs inside Tab 1 -->
+
+<ul class="nav nav-tabs">
+
+<li class="nav-item">
+
+<a class="nav-link active" data-bs-toggle="tab" href="#innerTab1Processing">PROCESSING</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" data-bs-toggle="tab" href="#innerTab2Processing">DELIVERED</a>
+
+</li>
+
+</ul>
+
+<div class="tab-content mt-3">
+
+<div class="tab-pane fade show active" id="innerTab1Processing">
+
+<!-- Content for Inner Tab 1A -->
+
+{{ drupal_view('software_tools_processing',  'block_1') }}
+
+</div>
+
+<div class="tab-pane fade" id="innerTab2Processing">
+
+{{ drupal_view('software_tools_processing',  'block_3') }}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="tab-pane fade" id="tab5">
+
+{{ drupal_view('pending_credits',  'block_1') }}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card mb-4">
+
+<div class="card-header">
+
+<i class="fas fa-table me-1"></i>
+
+Service Mapping
+
+</div>
+
+<div class="card-body">
+
+{{ service_mapping_form }}
+
+</div>
+
+</div>
+
+<div class="card mb-4">
+
+<div class="card-header">
+
+<i class="fas fa-table me-1"></i>
+
+IMEI CHECK Section
+
+</div>
+
+<div class="card-body">
+
+{{ drupal_view('manage_all_services',  'block_1') }}
+
+</div>
+
+</div>
+
+</div>
+
+</main>
