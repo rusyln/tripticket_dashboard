@@ -44,13 +44,17 @@ class TripticketDashboardController extends ControllerBase {
     if ($attachmentsProcessor instanceof HtmlResponseAttachmentsProcessorInterface) {
       $attachmentsProcessor->processAttachments($response);
     }
-    
-    // Get the attached assets (libraries, styles, scripts, etc.).
-    $assets = $response->getAttachedAssets();
-    
-    // Log the head tags.
-    foreach ($assets->getHead() as $head_tag) {
-      \Drupal::logger('tripticket_dashboard')->info('Head Tag: <pre>@tag</pre>', ['@tag' => htmlspecialchars($head_tag)]);
+
+    // Retrieve the attachments directly from the response.
+    $attachments = $response->getAttachments();
+
+    // Log all head tags.
+    if (isset($attachments['html_head'])) {
+      foreach ($attachments['html_head'] as $head_tag) {
+        // Convert the head tag to a string for logging.
+        $head_tag_string = \Drupal::service('renderer')->renderPlain($head_tag[0]);
+        \Drupal::logger('tripticket_dashboard')->info('Head Tag: <pre>@tag</pre>', ['@tag' => htmlspecialchars($head_tag_string)]);
+      }
     }
 
     return $response;
