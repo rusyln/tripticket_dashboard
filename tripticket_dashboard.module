@@ -8,9 +8,8 @@ function tripticket_dashboard_theme($existing, $type, $theme, $path) {
         'template' => 'tripticket-dashboard',
         'path' => $path . '/templates',
         'variables' => [
-            'num_pending_tickets' => NULL
-
-        ],  // Ensure 'variables' is set if using the same key in the controller.
+          'num_pending_tickets' => NULL,
+        ],
       ],
     ];
   }
