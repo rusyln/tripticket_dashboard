@@ -1,5 +1,4 @@
-<?php
-namespace Drupal\tripticket_dashboard\Controller;
+<?phpnamespace Drupal\tripticket_dashboard\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Controller\ControllerBase;
@@ -28,7 +27,9 @@ class TripticketDashboardController extends ControllerBase {
     // Build the content for the page.
     $content = [
       '#theme' => 'tripticket_dashboard',
-      '#num_pending_tickets' => $num_pending_tickets,
+      '#variables' => [  // Use 'variables' to pass the data to the Twig template.
+        'num_pending_tickets' => $num_pending_tickets,
+      ],
       '#attached' => [
         'library' => [
           'tripticket_dashboard/tripticket_dashboard',  // Attach your custom library here.
@@ -64,6 +65,4 @@ class TripticketDashboardController extends ControllerBase {
 
     return $response;
   }
-
 }
-
