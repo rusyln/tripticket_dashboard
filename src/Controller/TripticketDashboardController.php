@@ -1,10 +1,12 @@
 <?php
 
 namespace Drupal\tripticket_dashboard\Controller;
+
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\BareHtmlPageRenderer;
+use Drupal\Core\Html\HtmlResponseAttachmentsProcessorInterface;
+
 /**
  * Returns responses for Tripticket Dashboard routes.
  */
@@ -14,25 +16,29 @@ class TripticketDashboardController extends ControllerBase {
    * Builds the response.
    */
   public function build() {
-
-
-    if (!$this -> currentUser()->hasPermission('administer tripticket_dashboard configuration')){
+    // Check if the user has the necessary permission.
+    if (!$this->currentUser()->hasPermission('administer tripticket_dashboard configuration')){
       return new RedirectResponse('/');
     }
 
-    $build = array(
-      'page' => array(
-        '#theme' => 'tripticket_dashboard',
-        '#content' => $content,
-      ),
-    );
+    // Build the content for the page.
+    $content = [
+      '#theme' => 'tripticket_dashboard',
+      '#content' => $content,
+    ];
 
-    $attachments = \Drupal::service('html_response.attachments_processor');
-    $renderer = \Drupal::service('renderer');
+    // Use Drupal services to render the page.
+    $bareHtmlPageRenderer = new BareHtmlPageRenderer(\Drupal::service('renderer'), \Drupal::service('html_response.attachments_processor'));
     
-    $bareHtmlPageRenderer = new BareHtmlPageRenderer($renderer, $attachments);
+    // Render the bare HTML page.
+    $response = $bareHtmlPageRenderer->renderBarePage($content, 'Page Title', 'markup');
     
-    $response = $bareHtmlPageRenderer->renderBarePage($build, 'Page Title', 'markup');
+    // Attach head tags using HtmlResponseAttachmentsProcessorInterface.
+    $attachmentsProcessor = \Drupal::service('html_response.attachments_processor');
+    if ($attachmentsProcessor instanceof HtmlResponseAttachmentsProcessorInterface) {
+      $attachmentsProcessor->processAttachments($response);
+    }
+    
     return $response;
   }
 
