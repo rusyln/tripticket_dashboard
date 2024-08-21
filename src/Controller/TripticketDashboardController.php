@@ -27,7 +27,7 @@ class TripticketDashboardController extends ControllerBase {
       '#content' => $content,
       '#attached' => [
         'library' => [
-          'tripticket_dashboard/custom_library',  // Attach your custom library here.
+          'tripticket_dashboard/tripticket_dashboard',  // Attach your custom library here.
         ],
       ],
     ];
@@ -47,7 +47,7 @@ class TripticketDashboardController extends ControllerBase {
     // Retrieve the attachments directly from the response.
     $attachments = $response->getAttachments();
 
-    // Filter out theme libraries.
+    // Filter out all libraries except the ones from your custom module.
     if (isset($attachments['library'])) {
       $attachments['library'] = array_filter($attachments['library'], function ($library) {
         // Keep only the libraries from your module.
@@ -55,16 +55,11 @@ class TripticketDashboardController extends ControllerBase {
       });
     }
 
-    // Log all head tags.
-    if (isset($attachments['html_head'])) {
-      foreach ($attachments['html_head'] as $head_tag) {
-        // Convert the head tag to a string for logging.
-        $head_tag_string = \Drupal::service('renderer')->renderPlain($head_tag[0]);
-        \Drupal::logger('tripticket_dashboard')->info('Head Tag: <pre>@tag</pre>', ['@tag' => htmlspecialchars($head_tag_string)]);
-      }
-    }
+    // Re-process the attachments to ensure only your module's assets are attached.
+    $response->setAttachments($attachments);
 
     return $response;
   }
 
 }
+
