@@ -6,6 +6,11 @@
 			<li class="breadcrumb-item active">GSD Monitoring</li>
 		</ol>
 		<div class="row">
+			
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+		  Launch Modal
+		</button>
 			<div class="col-xl-3 col-md-6">
 				<div class="card bg-primary text-white mb-4">
 					<div class="card-body">
@@ -59,11 +64,7 @@
 				{{ drupal_view('list_of_tripticket', 'block_1') }}
 			</div>
 		</div>
-		
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-		  Launch Modal
-		</button>
+	
 		
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
