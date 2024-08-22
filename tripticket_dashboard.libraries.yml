@@ -11,3 +11,6 @@ tripticket_dashboard:
   dependencies:
     - core/drupalSettings
     - tripticket_dashboard/jquery-labelauty
+    - core/jquery
+    - core/drupal
+    - core/bootstrap

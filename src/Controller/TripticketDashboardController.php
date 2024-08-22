@@ -39,6 +39,7 @@ class TripticketDashboardController extends ControllerBase {
       '#attached' => [
         'library' => [
           'tripticket_dashboard/tripticket_dashboard',  // Attach your custom library here.
+          'core/bootstrap',
         ],
       ],
     ];
